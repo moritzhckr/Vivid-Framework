@@ -1,0 +1,22 @@
+{
+  "name": "com.mrtzhckr.vivid",
+  "displayName": "VividFramework",
+  "version": "0.0.1",
+  "unity": "2019.4",
+  "keywords": [
+    "unity",
+    "animation",
+    "Characters",
+    "Avatars",
+    "tools"
+  ],
+  "description": "Framework for simulating Avatars in digital buildings",
+  "relatedPackages": {},
+  "upmCi": {},
+  "repository": {
+    "url": "https://github.de/mrtzhckr",
+    "type": "git",
+    "revision": ""
+  },
+  "hideInEditor": false
+}
