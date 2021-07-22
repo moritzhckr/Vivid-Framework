@@ -7,14 +7,14 @@ In the Unity Package Manager window click + Add from GitUrl and paste in the lin
 
 # Setup
 ## Scene Preperation
-<img src="/Documentation~/NavStatic.png" width="200" height="200" />
-<img src="/Documentation~/NavMeshSettings.png" width="200" height="200" />
+<img src="/Documentation~/NavStatic.png" width="200" />
+<img src="/Documentation~/NavMeshSettings.png" width="200"  />
 
 Before importing any Vivid Components into your scene set all walkable areas,  obstacles and Walls 'Navigation Static'. 
 In the Navigation Inspector Window (Window -> AI -> Navigation) In the Bake tab set your Agents settings and click on Bake.
 
 
-<img src="/Documentation~/UnityNavmesh.png" width="400" height="200" />
+<img src="/Documentation~/UnityNavmesh.png" width="400"  />
 
 Unity calculates an Navigation Mesh on which a character can navigate.
 
