@@ -356,13 +356,13 @@ AnimatorStateMachine:
     m_Position: {x: 980, y: 440, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4273370857371832821}
-    m_Position: {x: 520, y: 250, z: 0}
+    m_Position: {x: 490, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8646140721333098448}
-    m_Position: {x: 520, y: 370, z: 0}
+    m_Position: {x: 490, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 288778740093120675}
-    m_Position: {x: 520, y: 310, z: 0}
+    m_Position: {x: 500, y: 310, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6334590954046959314}
     m_Position: {x: 540, y: 650, z: 0}
@@ -371,7 +371,7 @@ AnimatorStateMachine:
     m_Position: {x: 470, y: 540, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1266294671072508993}
-    m_Position: {x: 190, y: 640, z: 0}
+    m_Position: {x: 220, y: 480, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -534,7 +534,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Humanoid Sitting Down
+  m_Name: Vivid Humanoid Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Forward

@@ -6,11 +6,13 @@ using UnityEngine.AI;
 
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(MoveTarget))]
+[RequireComponent(typeof(MoveCharacter))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class CharacterStats : MonoBehaviour
+[RequireComponent(typeof(Vivid_ThirdPersonCharacter))]
+
+public class VividCharacter : MonoBehaviour
 {
     public string characterName;
     public string lastName;

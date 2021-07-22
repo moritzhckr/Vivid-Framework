@@ -4,7 +4,9 @@ using UnityEngine;
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Animator))]
-	public class Vivid_ThirdPersonCharacter : MonoBehaviour
+	[RequireComponent(typeof(MoveCharacter))]
+	[RequireComponent(typeof(VividCharacter))]
+public class Vivid_ThirdPersonCharacter : MonoBehaviour
 	{
 		[SerializeField] float m_MovingTurnSpeed = 360;
 		[SerializeField] float m_StationaryTurnSpeed = 180;

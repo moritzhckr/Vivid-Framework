@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5253356545333711259}
   - component: {fileID: 5253356545333711258}
   m_Layer: 0
-  m_Name: AnimationCollider Waving
+  m_Name: AnimationArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,12 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571f589d5fcc95641901992376b2ee94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColMat: {fileID: 2100000, guid: 504cad0835ffa574d852d96986e49bc8, type: 2}
-  NormalMat: {fileID: 2100000, guid: 3e3946d494745fe4e867d55877fce966, type: 2}
-  AnimationName:
-  - Waving Gesture
-  - Smoking
-  - Hip Hop Dancing
+  AnimationNames: []
+  looping: 0
+  animationLayer: 0
+  showAreaMesh: 0
 --- !u!33 &5253356545333711259
 MeshFilter:
   m_ObjectHideFlags: 0

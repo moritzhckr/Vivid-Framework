@@ -4,11 +4,16 @@ using UnityEngine.UI;
 using System;
 public class Clock : MonoBehaviour
 {
+    public bool showTimeOnUI;
     public Text textClock;
     public DateTime time;
     void Awake()
     {
-       // textClock = GetComponent<Text>();
+       if(textClock == null)
+        {
+            Debug.Log("'There is no UI text asset for displaying time, please add one");
+            showTimeOnUI = false;
+        }
     }
     void Update()
     {
@@ -16,7 +21,12 @@ public class Clock : MonoBehaviour
         string hour = LeadingZero(time.Hour);
         string minute = LeadingZero(time.Minute);
         string second = LeadingZero(time.Second);
-        textClock.text = hour + ":" + minute + ":" + second;
+        if (showTimeOnUI)
+        {
+            textClock.text = hour + ":" + minute + ":" + second;
+        }
+       
+
     }
     string LeadingZero(int n)
     {

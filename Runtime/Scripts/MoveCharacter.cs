@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 //using UnityStandardAssets.Characters.ThirdPerson;
 
-public class MoveTarget : MonoBehaviour
+[RequireComponent(typeof(NavMeshAgent))]
+public class MoveCharacter : MonoBehaviour
 {
     public NavMeshAgent nmAgent;
 
@@ -14,6 +15,7 @@ public class MoveTarget : MonoBehaviour
   
     private void Start()
     {
+        nmAgent = gameObject.GetComponent<NavMeshAgent>();
         nmAgent.updateRotation = false;
         thirdPersonCharacter = nmAgent.GetComponent<Vivid_ThirdPersonCharacter>();
     }
@@ -42,11 +44,28 @@ public class MoveTarget : MonoBehaviour
         {
             thirdPersonCharacter.Move(Vector3.zero, false, false);
 
-            if (destroyOnDestination)
-            {
-                Destroy(gameObject);
-            }
            
+           
+        }
+        if (nmAgent.remainingDistance > nmAgent.stoppingDistance)
+        {
+            thirdPersonCharacter.Move(nmAgent.desiredVelocity, false, false);
+            if (nmAgent.remainingDistance < nmAgent.stoppingDistance + 1)
+            {
+                if (destroyOnDestination)
+                {
+                    Debug.Log("got Distroy call");
+                    Destroy(gameObject);
+                }
+
+            }
+        }
+        else
+        {
+            thirdPersonCharacter.Move(Vector3.zero, false, false);
+
+
+
         }
     }
 }

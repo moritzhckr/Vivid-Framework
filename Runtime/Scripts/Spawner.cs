@@ -6,12 +6,12 @@ using System.Globalization;
 
 public class Spawner : MonoBehaviour
 {
-
+    public GameObject vividSpawnManager;
     public string spawnTimeStr;
-    public Clock clock;
+    private Clock clock;
     private DateTime spawnTime;
-    public CharacterSpawner characterSpawner;
-    public Destinations destinations;
+    private VividCharacterSpawner characterSpawner;
+    private Destinations destinations;
     int counter;
     public int spawnAmount =1;
     public bool spawnRandom;
@@ -23,16 +23,17 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        clock =  GameObject.Find("Scripts").GetComponent<Clock>();
-        characterSpawner = GameObject.Find("Scripts").GetComponent<CharacterSpawner>();
-        destinations = GameObject.Find("Scripts").GetComponent<Destinations>();
+        vividSpawnManager = GameObject.FindObjectOfType<VividCharacterSpawner>().gameObject;
+        clock = vividSpawnManager.GetComponent<Clock>();
+        characterSpawner = vividSpawnManager.GetComponent<VividCharacterSpawner>();
+        destinations = vividSpawnManager.GetComponent<Destinations>();
         InvokeRepeating("Count", 1, 1);
 
         spawnTimeStr = System.DateTime.Now.AddSeconds(2f).ToString();
         
           spawnTime = System.DateTime.Parse(spawnTimeStr);
-        Debug.Log(spawnTime);
-        Debug.Log(System.DateTime.Now);
+        //Debug.Log(spawnTime);
+        //Debug.Log(System.DateTime.Now);
     }
 
     // Update is called once per frame
