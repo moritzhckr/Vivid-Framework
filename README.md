@@ -9,7 +9,7 @@ Based on Unitys Navmesh system, standard rigged Character models can be used in 
 - Wayfinding between start an destination points.
 - Creation of AnimationAreas, if a character is inside a certain area animationclips can be played.
 
-<img src="/Documentation~/StartDestinationPoint.png" width="200" />
+<img src="/Documentation~/StartDestinationPoint.PNG" width="200" />
 <img src="/Documentation~/AnimationArea.png" width="200" />
 <img src="/Documentation~/UnityNavmesh.png" width="200" />
 
