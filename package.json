@@ -1,6 +1,7 @@
 {
-  "name": "com.mrtzhckr.vivid",
+  "name": "de.mrtzhckr.vivid",
   "displayName": "VividFramework",
+  "documentationUrl": "VividFramework.md",
   "version": "0.0.1",
   "unity": "2019.4",
   "keywords": [
@@ -10,11 +11,11 @@
     "Avatars",
     "tools"
   ],
-  "description": "Framework for simulating Avatars in digital buildings",
+  "description": "Framework for simulating characters in digital buildings",
   "relatedPackages": {},
   "upmCi": {},
   "repository": {
-    "url": "https://github.de/mrtzhckr",
+    "url": "https://github.com/moritzhckr/Vivid-Framework",
     "type": "git",
     "revision": ""
   },
