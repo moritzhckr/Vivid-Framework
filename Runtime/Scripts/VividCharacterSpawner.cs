@@ -55,8 +55,8 @@ public class VividCharacterSpawner : MonoBehaviour
             newCharacter.GetComponent<VividCharacter>().isFemale = false;
             newCharacter.GetComponent<VividCharacter>().characterName = preName(false);
         }
-        //setDestination(newCharacter, target);
-          newCharacter.GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+        newCharacter.GetComponent<VividCharacter>().target = target;
+        newCharacter.GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
         // newCharacter = Instantiate<GameObject>(character, startPoint.transform.position, Quaternion.identity);
         // newCharacter = Instantiate(character, startPoint.transform.position, Quaternion.identity);
         string characterName = "NavMeshAgent " + count.ToString(); ;
@@ -118,13 +118,7 @@ public class VividCharacterSpawner : MonoBehaviour
                 }
     }
 
-    void setDestination(GameObject character, GameObject destination)
-    {
-        character.GetComponent<VividCharacter>().target = destination;
-
-        character.GetComponent<MoveCharacter>().destroyOnDestination = destination.gameObject.GetComponent<DestinationPoint>().destroyOnArrival;
-
-    }
+    
 
     string generateLastname()
     {

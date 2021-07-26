@@ -52,7 +52,7 @@ public class MoveCharacter : MonoBehaviour
             thirdPersonCharacter.Move(nmAgent.desiredVelocity, false, false);
             if (nmAgent.remainingDistance < nmAgent.stoppingDistance + 1)
             {
-                if (destroyOnDestination)
+                if (gameObject.GetComponent<VividCharacter>().target.gameObject.GetComponent<DestinationPoint>().destroyOnArrival)
                 {
                     Debug.Log("got Distroy call");
                     Destroy(gameObject);

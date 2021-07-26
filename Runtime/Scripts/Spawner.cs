@@ -6,83 +6,101 @@ using System.Globalization;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject vividSpawnManager;
-    public string spawnTimeStr;
-    private Clock clock;
-    private DateTime spawnTime;
+    private GameObject vividSpawnManager;
     private VividCharacterSpawner characterSpawner;
     private Destinations destinations;
-    int counter;
-    public int spawnAmount =1;
-    public bool spawnRandom;
-    public bool spawnInterval;
-    public bool spawnOnTime;
-    public int repeatTime;
+    private float time = 0.0f;
 
-    public bool canSpawn = true;
+    public int spawnAmount =1;
+    public bool spawnInterval;
+    public float repeatTime;
+
+    public bool spawnRandom;
+    public GameObject fixedDestination;
+
+
+   
+    public float randomMin;
+    public float randomMax;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        //Get References to other Scripts
         vividSpawnManager = GameObject.FindObjectOfType<VividCharacterSpawner>().gameObject;
-        clock = vividSpawnManager.GetComponent<Clock>();
         characterSpawner = vividSpawnManager.GetComponent<VividCharacterSpawner>();
         destinations = vividSpawnManager.GetComponent<Destinations>();
-        InvokeRepeating("Count", 1, 1);
 
-        spawnTimeStr = System.DateTime.Now.AddSeconds(2f).ToString();
-        
-          spawnTime = System.DateTime.Parse(spawnTimeStr);
-        //Debug.Log(spawnTime);
-        //Debug.Log(System.DateTime.Now);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (  System.DateTime.Compare(clock.time , _lastspawnTime) == 0)
-        //{
-        //    Spawn();
-        //}
-        if(spawnOnTime)
-        {
-            if (clock.time.Hour == spawnTime.Hour && clock.time.Minute == spawnTime.Minute && clock.time.Second == spawnTime.Second && canSpawn)
-            {
-                
-                Spawn();
-            }
-        }
-        
-      
-
-        if (spawnRandom)
-        {
-            int randomcount = UnityEngine.Random.Range(1, 10);
-            if (counter == randomcount)
-            {
-                Debug.Log(randomcount);
-                Spawn();
-            }
-            
-        }
-        else if(counter == repeatTime && spawnInterval)
+        if (!spawnInterval)
         {
             Spawn();
         }
+    }
+
+
+    void Update()
+    {
+        
+        //if(spawnOnTime)
+        //{
+        //    if (clock.time.Hour == spawnTime.Hour && clock.time.Minute == spawnTime.Minute && clock.time.Second == spawnTime.Second && canSpawn)
+        //    {
+                
+        //        Spawn();
+        //    }
+        //}
+        
+      
+
+        if (spawnInterval)
+        {
+            if (spawnRandom)
+            {
+                repeatTime = UnityEngine.Random.Range(randomMin,randomMax);
+                time += Time.deltaTime;
+
+                if (time >= repeatTime)
+                {
+                    time = time - repeatTime;
+
+                    Spawn();
+                }
+            }
+            else
+            {
+                time += Time.deltaTime;
+
+                if (time >= repeatTime)
+                {
+                    time = time - repeatTime;
+
+                    Spawn();
+                }
+            }
+            
+           
+        }
+        
 
       
     }
  
     private void Spawn()
     {
-        counter = 0;
-         characterSpawner.SpawnGroup(spawnAmount, 1.0F, gameObject, destinations._destinations[UnityEngine.Random.Range(0, destinations._destinations.Length)]);
-        canSpawn = false;
+        if(fixedDestination == null)
+        {
+            characterSpawner.SpawnGroup(spawnAmount, 1.0F, gameObject, destinations._destinations[UnityEngine.Random.Range(0, destinations._destinations.Length)]);
+            
+        }
+        else
+        {
+            characterSpawner.SpawnGroup(spawnAmount, 1.0F, gameObject, fixedDestination);
+           
+        }
+       
     }
 
     
    
-    public void Count()
-    {
-        counter++;
-    }
 }
