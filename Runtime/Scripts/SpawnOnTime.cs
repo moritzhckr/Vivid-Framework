@@ -35,13 +35,14 @@ public class SpawnOnTime : MonoBehaviour
         if(vividCharacterSpawner == null)
         {
             vividCharacterSpawner = GameObject.FindObjectOfType<VividCharacterSpawner>();
-        }     
-        if(jsonFileName != null)
+        }
+        if (!String.IsNullOrEmpty(jsonFileName))
         {
             ParseJsonPlan(LoadResourceTextfile(jsonFileName));
+
         }
-         
-       
+
+
     }
 
     private void ParseJsonPlan(string jsonString)
