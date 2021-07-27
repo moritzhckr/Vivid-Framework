@@ -55,7 +55,7 @@ For debugging reasons it is possible to set the "ShowAreaMesh" bool to true if i
 If multiple animation clips are added to the list the script will randomly select which one to play.
 
 ## Import custom animationclips
-<img src="/Documentation~/'AnimatorClips.png" width="800"  />
+<img src="/Documentation~/'AnimatorClips.PNG" width="800"  />
 
 To add additional Animation clips that can be used with the AnimationAreas import the clips to the project.
 - In the Import Settings -> Rig tab select Humanoid for the Animation Type.
