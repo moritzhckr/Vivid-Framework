@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     public int spawnAmount =1;
     public bool spawnInterval;
     public float repeatTime;
-
+    [Range(0f, 100f)] [SerializeField] float percentFemalesInGroup = 50.0f;
     public bool spawnRandom;
     public GameObject fixedDestination;
 
@@ -90,12 +90,12 @@ public class Spawner : MonoBehaviour
     {
         if(fixedDestination == null)
         {
-            characterSpawner.SpawnGroup(spawnAmount, 1.0F, gameObject, destinations._destinations[UnityEngine.Random.Range(0, destinations._destinations.Length)]);
+            characterSpawner.SpawnGroup(spawnAmount, percentFemalesInGroup, gameObject, destinations._destinations[UnityEngine.Random.Range(0, destinations._destinations.Length)]);
             
         }
         else
         {
-            characterSpawner.SpawnGroup(spawnAmount, 1.0F, gameObject, fixedDestination);
+            characterSpawner.SpawnGroup(spawnAmount, percentFemalesInGroup, gameObject, fixedDestination);
            
         }
        
