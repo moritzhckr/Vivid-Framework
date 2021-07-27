@@ -123,7 +123,7 @@ public class SpawnOnTime : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            StartCoroutine(PlanedSpawn(spawnInfos[0].characterCount, spawnInfos[0].percentFemales, vividCharacterSpawner.SpawnPoint, vividCharacterSpawner._destinations._destinations[0]));
+            StartCoroutine(PlanedSpawn(spawnInfos[0].characterCount, spawnInfos[0].percentFemales, vividCharacterSpawner.DebugSpawnPoint, vividCharacterSpawner._destinations._destinations[0]));
         }
 
     }

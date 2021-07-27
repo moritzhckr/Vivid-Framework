@@ -13,7 +13,7 @@ public class VividCharacterSpawner : MonoBehaviour
     public List<GameObject> avatars_m;
     public List<GameObject> avatars_f;
     public Destinations _destinations;
-    public GameObject SpawnPoint;
+   
     public int spawnGroupCount;
 
     //Number of Spawend Characters
@@ -22,7 +22,7 @@ public class VividCharacterSpawner : MonoBehaviour
     List<Dictionary<string, object>> namesCSVList;
 
     public bool DebugModeOn = false;
-
+    public GameObject DebugSpawnPoint;
     private void Awake()
     {
         List<Dictionary<string, object>> namesCSV = CSVReader.Read("VornamenNachnamen");
@@ -39,7 +39,7 @@ public class VividCharacterSpawner : MonoBehaviour
     {
         GameObject newCharacter = character;
 
-        Debug.Log(character.name);
+      
         newCharacter = Instantiate(character, startPoint.transform.position, Quaternion.identity);
        
         if (isFemale == true)
@@ -78,25 +78,25 @@ public class VividCharacterSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && DebugModeOn)
         {
             GameObject target = _destinations._destinations[UnityEngine.Random.Range(0, _destinations._destinations.Length)];
             bool isFemale = randomBool();
             if (isFemale == true)
             {
-                SpawnCharacter(avatars_f[UnityEngine.Random.Range(0, avatars_f.Count)], SpawnPoint, target, isFemale);
+                SpawnCharacter(avatars_f[UnityEngine.Random.Range(0, avatars_f.Count)], DebugSpawnPoint, target, isFemale);
             }
             else
             {
-                SpawnCharacter(avatars_m[UnityEngine.Random.Range(0, avatars_m.Count)],SpawnPoint, target, isFemale);
+                SpawnCharacter(avatars_m[UnityEngine.Random.Range(0, avatars_m.Count)],DebugSpawnPoint, target, isFemale);
             }
             
         }
 
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && DebugModeOn)
         {
           GameObject target = _destinations._destinations[UnityEngine.Random.Range(0, _destinations._destinations.Length)];
-          SpawnGroup(spawnGroupCount, percentFemalesInGroup,SpawnPoint, target);
+          SpawnGroup(spawnGroupCount, percentFemalesInGroup,DebugSpawnPoint, target);
 
         }
 
@@ -105,7 +105,7 @@ public class VividCharacterSpawner : MonoBehaviour
 
         int w = (count * Mathf.RoundToInt(percentfemales)) / 100;
         int m = count - w;
-        Debug.Log("Spawn:" + w + " Females, " + m + " Males");
+       
         for (int i = 0; i < w; i++)
                 {
           

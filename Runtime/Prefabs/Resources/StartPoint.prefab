@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5644928287893051342}
   - component: {fileID: 5644928287893051341}
   - component: {fileID: 5644928287893051340}
-  - component: {fileID: 5644928287893051339}
   - component: {fileID: 274500851639939962}
   m_Layer: 0
   m_Name: StartPoint
@@ -81,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5644928287893051339
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5644928287893051338}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &274500851639939962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,13 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc254ae17512474eaf4a33c8b3b255d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTimeStr: 
-  clock: {fileID: 0}
-  characterSpawner: {fileID: 0}
-  destinations: {fileID: 0}
   spawnAmount: 1
-  spawnRandom: 0
   spawnInterval: 0
-  spawnOnTime: 0
   repeatTime: 0
-  canSpawn: 1
+  spawnRandom: 0
+  fixedDestination: {fileID: 0}
+  randomMin: 0
+  randomMax: 0

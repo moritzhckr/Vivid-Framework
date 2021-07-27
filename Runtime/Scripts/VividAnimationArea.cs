@@ -4,14 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class VividAnimationArea : MonoBehaviour 
 {
-       
     public string[] AnimationNames;
-    bool isColliding = false;
-
-   public  bool looping = false;
     public int animationLayer;
     public bool showAreaMesh = false;
-    // Start is called before the first frame update
+    bool isColliding = false;
     void Start()
     {
        
@@ -35,10 +31,7 @@ public class VividAnimationArea : MonoBehaviour
         StartCoroutine(FadeOut(other.gameObject.GetComponent<Animator>(), 1));
 
     }
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
+  
 
     private string RandomSelector(string[] AnimationNames)
     {
@@ -57,7 +50,12 @@ public class VividAnimationArea : MonoBehaviour
     }
     IEnumerator StartAnimRandom(Collider other)
     {
-        string animationNames = RandomSelector(AnimationNames);
+        Animator m_Animator;
+        string m_ClipName;
+        AnimatorClipInfo[] m_CurrentClipInfo;
+
+        float m_CurrentClipLength;
+        string animationName = RandomSelector(AnimationNames);
 
         if (isColliding)
         {
@@ -66,19 +64,17 @@ public class VividAnimationArea : MonoBehaviour
 
             if (other.gameObject != null)
             {
-                Debug.Log("other.gameObject != null "+ animationNames);
-                other.gameObject.GetComponent<Animator>().Play(animationNames);
+                Debug.Log("other.gameObject != null "+ animationName);
+                other.gameObject.GetComponent<Animator>().Play(animationName);
+                
             }
+               
             else
             {
                 yield break;
             }
 
-            if (looping && AnimatorIsPlaying(other.gameObject.GetComponent<Animator>()))
-            {
-                Debug.Log("looping");
-                StartCoroutine(StartAnimRandom(other));
-            }
+            
         }
         else
         {
@@ -90,6 +86,19 @@ public class VividAnimationArea : MonoBehaviour
 
 
     }
+    public AnimationClip FindAnimation(Animator animator, string name)
+    {
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == name)
+            {
+                return clip;
+            }
+        }
+
+        return null;
+    }
+
     public IEnumerator FadeIn(Animator Animator, float time)
     {
         float weight = Animator.GetLayerWeight(animationLayer);

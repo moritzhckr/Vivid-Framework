@@ -12,7 +12,7 @@ public class CreateAnimationArea : MonoBehaviour
     {
        
         GameObject instance = Instantiate(Resources.Load("AnimationArea", typeof(GameObject))) as GameObject;
-        string name = "AnimationArear_" + i.ToString();
+        string name = "AnimationArea_" + i.ToString();
         instance.name = name;
        
         var tempMaterial = new Material(instance.GetComponent<MeshRenderer>().sharedMaterial);
