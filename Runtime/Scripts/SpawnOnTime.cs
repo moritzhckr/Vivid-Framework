@@ -11,10 +11,10 @@ using SimpleJSON;
 [Serializable]
 public class SpawnInfo
 {
-   public GameObject StartPosition;
+   public GameObject startPoint;
     public int characterCount;
     public float percentFemales;
-    public GameObject destinationName;
+    public GameObject destinationPoint;
     public int TimeHour;
     public int TimeMinute;
     public int TimeSeconds;
@@ -26,7 +26,7 @@ public class SpawnOnTime : MonoBehaviour
 {
     public VividCharacterSpawner vividCharacterSpawner;
     public Clock clock;
-    public bool DebugModeOn = false;
+    public bool DebugModeOn = true;
     public string jsonFileName = "spawnPlan.json";
     public List<SpawnInfo> spawnInfos;
 
@@ -34,9 +34,13 @@ public class SpawnOnTime : MonoBehaviour
     {
         if(vividCharacterSpawner == null)
         {
-            vividCharacterSpawner = GameObject.Find("VividSpawnManager").GetComponent<VividCharacterSpawner>();
+            vividCharacterSpawner = GameObject.FindObjectOfType<VividCharacterSpawner>();
         }     
-         ParseJsonPlan(LoadResourceTextfile(jsonFileName));
+        if(jsonFileName != null)
+        {
+            ParseJsonPlan(LoadResourceTextfile(jsonFileName));
+        }
+         
        
     }
 
@@ -52,20 +56,21 @@ public class SpawnOnTime : MonoBehaviour
         for (int i = 0; i < arr.Count; i++)
         {
             SpawnInfo tempSpawn = new SpawnInfo();
-            tempSpawn.StartPosition = GameObject.Find(arr[i]["StartPosition"]);
+            tempSpawn.startPoint = GameObject.Find(arr[i]["startPoint"]);
             tempSpawn.characterCount = arr[i]["characterCount"].AsInt;
           
-            tempSpawn.destinationName = GameObject.Find(arr[i]["destinationName"]);
+            tempSpawn.destinationPoint = GameObject.Find(arr[i]["destinationPoint"]);
             tempSpawn.TimeHour = arr[i]["TimeHour"].AsInt;
             tempSpawn.TimeMinute = arr[i]["TimeMinute"].AsInt;
             tempSpawn.TimeSeconds = arr[i]["TimeSeconds"].AsInt;
             tempSpawn.percentFemales = arr[i]["percentFemales"].AsFloat;
-            Debug.Log(tempSpawn.percentFemales + "  " + arr[i]["percentFemales"].AsInt + "  " + arr[i]["percentFemales"].AsFloat);
-
-
+            if (DebugModeOn)
+            {
+                Debug.Log(tempSpawn.percentFemales + "  " + arr[i]["percentFemales"].AsInt + "  " + arr[i]["percentFemales"].AsFloat);
+            } 
+           
             spawnInfos.Add(tempSpawn);
            
-            
         }
      
 
@@ -107,7 +112,7 @@ public class SpawnOnTime : MonoBehaviour
                     if (clock.time.Second == item.TimeSeconds && blockdoubleCalls)
                     {
                         blockdoubleCalls = false;
-                      StartCoroutine( PlanedSpawn(item.characterCount, item.percentFemales, item.StartPosition, item.destinationName));
+                      StartCoroutine( PlanedSpawn(item.characterCount, item.percentFemales, item.startPoint, item.destinationPoint));
                         if (DebugModeOn)
                         {
                             Debug.Log("SpawnTime: " + item.TimeHour + ": " + item.TimeMinute + ": " + item.TimeSeconds );
@@ -119,12 +124,5 @@ public class SpawnOnTime : MonoBehaviour
 
             }
         }
-
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            StartCoroutine(PlanedSpawn(spawnInfos[0].characterCount, spawnInfos[0].percentFemales, vividCharacterSpawner.DebugSpawnPoint, vividCharacterSpawner._destinations._destinations[0]));
-        }
-
     }
 }
