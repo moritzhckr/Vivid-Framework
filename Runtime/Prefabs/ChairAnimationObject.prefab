@@ -114,8 +114,9 @@ MonoBehaviour:
   occupant: {fileID: 0}
   _Animclip: {fileID: -203655887218126122, guid: 54a9dbc6683073e459cd08d62d60429b,
     type: 3}
-  _Animclip_standup: {fileID: 0}
-  seatPosition: {fileID: 0}
+  _Animclip_standup: {fileID: -203655887218126122, guid: 827a0b8555e368b4497b4d4d92ff006e,
+    type: 3}
+  seatPosition: {fileID: 6167764713209215078}
   sittingTime: 0
 --- !u!1 &6167764713209215078
 GameObject:
