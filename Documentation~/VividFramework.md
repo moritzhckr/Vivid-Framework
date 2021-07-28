@@ -95,22 +95,22 @@ The destroy method is called from within the MoveCharacter script.
 
 ## Spawn on Time
 
-To spawn characters at a specific time use the SpawnOnTime scirpt.
-- Attach it to a gameobject (VividSpawnManager or StartPoint).
+To spawn characters at a specific time use the SpawnOnTime script.
+- Attach it to a GameObject (VividSpawnManager or StartPoint).
 - Reference the VividSpawnManager and the Clock script.
 - Create a Resources folder and create a .json file in it.
-- Put the name of the json file (with .json extenstion) in the JsonFileName field on the spawnOnTime script.
+- Put the name of the .json file (with .json extension) in the JsonFileName field on the spawnOnTime script.
 
-On Play, the script will read the values of the json file and adds it to a list of SpawnInfo objects.
+On Play, the script will read the values of the .json file and adds them to a list of SpawnInfo objects.
 
 
-A SpawnInfo Object has the following parametes:
-- StartPosition : The Name of the Gameobject from which the characters should start.
+A SpawnInfo Object has the following parameters:
+- StartPosition: The Name of the GameObject from which the characters should start.
 - characterCount: Number of Characters
-- DestinationName: The Name of the Gameobject to which the characters walk to.
-- TimeHour: The Hour on which the spawn should happen
-- TimeMinute: The Minute on which the spawn should happen
-- TimeSeconds: The Second on which the spawn should happen
+- DestinationName: The Name of the GameObject to which the characters walk to.
+- TimeHour: The Hour on which the spawn should happen.
+- TimeMinute: The Minute on which the spawn should happen.
+- TimeSeconds: The Second on which the spawn should happen.
 
 #### Example JsonFile
 
@@ -131,7 +131,25 @@ A SpawnInfo Object has the following parametes:
     ]
 }
 ```
-This will spawn a group of 10 charachters which are 100% Female at StartPoint_4 at 12:00:00 o clock and they will work to DestinationPoint_4_
+This will spawn a group of 10 charachters which are 100% female at StartPoint_4 at 12:00:00 o clock and they will walk to DestinationPoint_4.
 
 
-wf
+
+### Animation Objects
+Animation Objects are Objects that trigger a specific animation that belongs to an object. Ex. Sitting down on a chair.
+[WIP - So far one object has been implemented.]
+
+#### Chair
+The chair object has, next to the mesh, two special child gameobjects:
+- NavTarget this is the position which is used for the NavMeshAgent to steer to.
+- SeatPosition is the Position which is used to place the character on the chair when it sits down. 
+
+The two objects can be moved to make sure different chair styles can be applied.
+
+In general the flow inside the AnimationObject script is the following: 
+- The character walks to the Chair and triggers the OnTriggerEnter event of the chairs box collider.
+- If the character is the one that has the chair as target, and not a character that just walks by and collides accidently. It is set as the occupant Gameobject.
+- The AnimationLayers weights are set to 0 and the animation layer with the sitting down animation is faded up to 1.
+- Then the Sitting down animation clips is played.
+- If the occupant is not null the character is moved to the SeatPosition and rotated to face in the right direction. This happens in LateUpdate to prevent overriding from the animation clip.
+- 
