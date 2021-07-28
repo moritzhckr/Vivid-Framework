@@ -52,11 +52,23 @@ public class MoveCharacter : MonoBehaviour
             thirdPersonCharacter.Move(nmAgent.desiredVelocity, false, false);
             if (nmAgent.remainingDistance < nmAgent.stoppingDistance + 1)
             {
-                if (gameObject.GetComponent<VividCharacter>().target.gameObject.GetComponent<DestinationPoint>().destroyOnArrival)
+                DestinationPoint destination = gameObject.GetComponent<VividCharacter>().target.gameObject.GetComponent<DestinationPoint>();
+                AnimationObject animationObject = gameObject.GetComponent<VividCharacter>().target.gameObject.GetComponent<AnimationObject>();
+                if (animationObject != null && destination == null)
                 {
-                    Debug.Log("got Distroy call");
-                    Destroy(gameObject);
+                    Debug.Log("has AnimationObject");
+                    nmAgent.stoppingDistance = 0.0f;
                 }
+                if (destination != null)
+                {
+                    Debug.Log("has destination");
+                    if (gameObject.GetComponent<VividCharacter>().target.gameObject.GetComponent<DestinationPoint>().destroyOnArrival)
+                    {
+
+                        Destroy(gameObject);
+                    }
+                }
+                
 
             }
         }
