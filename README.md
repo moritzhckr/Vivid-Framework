@@ -25,6 +25,6 @@ For implementation Examples see: GitHub Implementation repo link
 
 Moritz Haecker
 
-This Project was developed as part of the Masterproject NW9 (Neue Welt 9) SS21 at Hochschule Reutlingen. Supervisor: Prof. Gabriela Tullius
+This Project was developed as part of the Masterproject NW9 (Neue Welt 9) SS21 at Hochschule Reutlingen Master Human Centered Computing. Supervisor: Prof. Gabriela Tullius & Anja Hartmann
 
 License: MIT (see [License](/LICENSE.md))
